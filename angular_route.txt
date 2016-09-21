@@ -1,0 +1,35 @@
+ngRoute (路由)
+1、ngRoute介绍
+	The ngRoute module provides routing and deeplinking services and directives for angular apps.
+	（ng-route模块为angualr应用提供了路由、深层链接和指令）
+	Example
+	See $route for an example of configuring and using ngRoute.
+
+2、Installation （配置）
+	First include angular-route.js in your HTML:
+	<script src="angular.js">
+	<script src="angular-route.js">
+	Then load the module in your application by adding it as a dependent module:
+	angular.module('app', ['ngRoute']);
+	With that you're ready to get started!
+	注意事项：1）使用该模块时，要先在自己的HTML中引入“angular-route.js”的js文件；
+			  2）然后还要在自己的程序中载入该模块，方法：作为一个依赖模块添加进去；
+			    eg：angular.module('app', ['ngRoute']);
+
+3、Module Components（模块当中的组件）
+	1）指令：Directive：ngView	
+	ngView is a directive that complements（补充） the $route service by including the rendered template of the current route into the main layout (index.html) file. Every time the current route changes, the included view changes with it according to the configuration of the $route service.
+	即：1）ngView指令会将当前路由呈现的模板内容加入到主页面布局文件中（index.html）
+		2）当前路由改变时，它所包括的视图也会根据 $route service 服务中的配置发生变化
+
+	2）Provider
+	Name：$routeProvider		
+	Used for configuring routes.（用于配置路由）
+
+	3）Service
+	$route 	
+		$route is used for deep-linking URLs to controllers and views (HTML partials). It watches $location.url() and tries to map the path to an existing route definition.
+		即：1）用于将urls与控制器和视图（局部Html）链接
+			2）$route 会监听$location.url(),并且映射该路径到当前路由
+	$routeParams	
+		The $routeParams service allows you to retrieve the current set of route parameters.（用于检索路由参数的设置）
