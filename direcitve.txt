@@ -1,0 +1,41 @@
+The compile API looks like so:
+		compile: function compile( tElement, tAttributes ) { ... }
+		
+		Often the parameters are prefixed with 't' to signify the elements and attributes provided are those of the source template, rather than that of the instance.
+		//通常参数带有前缀't',是为了表示元素和属性是由源模板提供的，而不是实例模板
+		Each directive's compile function is only called once, when Angular bootstraps.Officially, this is the place to perform (source) template manipulations that do not involve scope or data binding.
+		// 1)当Angular启动时，每个指令的编译函数只被调用一次；
+		   2)官方式说法是，此阶段执行源模板操作，并不包含作用域和数据的	 绑定。
+
+The controller API involves:
+		controller: function( $scope, $element, $attrs, $transclude ) { ... }
+
+		Each directive's controller function is called whenever a new related element is instantiated.
+		//每当一个新的相关标签元素被实例化都回调用每个指令的控制器函数
+		控制器中通常做以下事情：
+    		1)Defines controller logic (methods) that may be shared between controllers.
+    		定义控制器的逻辑（方法），这些逻辑方法可能在控制器之间共享
+    		2)Initiates scope variables.
+    		  开始作用域变量
+
+
+The pre-link API looks like so:
+		function preLink( scope, element, attributes, controller ) { ... }
+
+		Each directive's pre-link function is called whenever a new related element is instantiated.The pre-link function is rarely used, but can be useful in special scenarios; for example, when a child controller registers itself with the parent controller, but the registration has to be in a parent-then-child fashion (ngModelController does things this way).
+		即：1）每当一个新的相关元素被实例化都会调用指令的pre-link函数；
+			2）pre-link函数很少被用，但是在特殊情景时是有用的；例如：当一个子控制器注册到父控制器，但注册必须是以一个parent-then-child样式的时候（ngModelController的执行就是以这种方式）
+
+The post-link API is similar to that of the pre-link function:
+		function postLink( scope, element, attributes, controller ) { ... }
+		链接完成后通常做一下事情：
+		    1)Manipulate DOM (rendered, and thus instantiated) elements.
+		   	操作DOM
+		    2)Attach event handlers.
+		    附着事件处理函数
+		    3)Inspect child elements.
+		    检查子元素
+		    4)Set up observations on attributes.
+		   	设置对属性的监测
+		    5)Set up watches on the scope.
+		    设置对作用域的监测
